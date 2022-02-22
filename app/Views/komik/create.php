@@ -27,16 +27,15 @@
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
-            <form action="<?= base_url() ?>/komik/save" method="post">
+            <form action="<?= base_url() ?>/komik/save" method="post" enctype="multipart/form-data">
               <?= csrf_field() ?>
               <div class="form-group row">
                 <label for="judul" class="col-sm-3 col-form-label">Judul</label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control <?= ($validation->hasError('judul'))
                                                             ? 'is-invalid' : '' ?>" id="judul" name="judul" name="judul" placeholder="Judul komik" autofocus autocomplete="off" value="<?= old('judul')?>">
-                  <div id="validationServer03Feedback" class="invalid-feedback">
+                  <div id="pesanjudul" class="invalid-feedback">
                     <?= $validation->getError('judul') ?>
-
                   </div>
                 </div>
               </div>
@@ -54,18 +53,22 @@
               </div>
               <div class="form-group row">
                 <label for="sampul" class="col-sm-3 col-form-label">Sampul</label>
+               
                 <div class="col-sm-9">
-                <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                <div class="custom-file <?= ($validation->hasError('sampul'))
+                                                            ? 'is-invalid' : '' ?>">
+      <input type="file" class="custom-file-input" id="sampul" name="sampul" onchange="previewImg()">
+      <label class="custom-file-label" for="sampul">Pilih gambar</label>
+    </div>
+    <div class="invalid-feedback">
+    <?= $validation->getError('sampul') ?>
   </div>
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-  </div>
-</div>
+  <div class="col-sm-4">
+                <img src="<?= base_url() . '/public/img/komik1.jpg'?>" class="img-thumbnail img-preview">
+                </div>
                 </div>
               </div>
+              
               <button class="btn btn-primary" type="submit">Submit form</button>
             </form>
           </div>

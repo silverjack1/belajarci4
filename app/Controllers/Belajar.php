@@ -16,6 +16,7 @@ class Belajar extends BaseController
     }
     public function index()
     {
+       
         $siswa = [
             [
                 'nama' => 'Muhammad Dian Nafi',

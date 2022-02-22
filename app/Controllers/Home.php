@@ -14,6 +14,10 @@ public function basic()
     $db = db_connect();
     $builder = $db->table('video_games_sales')->select('id, Name, Genre, Publisher, NA_Sales, EU_Sales, JP_Sales');
     
-    return DataTable::of($builder)->toJson();
+    return DataTable::of($builder)
+    ->edit('Genre', function($row){
+        return '<button type="button" class="btn btn-info btn-sm" onclick="alert(\'Genre: '.$row->Genre.'\')"><i class="fas fa-info"></i> Info</button>';
+    })
+    ->toJson();
 }
 }
